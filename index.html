@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Converter Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-exchange-alt"></i> File Converter Pro</h1>
+            <p>Convert your files easily and securely</p>
+        </header>
+
+        <main>
+            <div class="converter-box">
+                <div class="converter-type">
+                    <button class="type-btn active" data-type="general">
+                        <i class="fas fa-file"></i> General
+                    </button>
+                    <button class="type-btn" data-type="pdf">
+                        <i class="fas fa-file-pdf"></i> PDF Tools
+                    </button>
+                    <button class="type-btn" data-type="audio">
+                        <i class="fas fa-music"></i> Audio Tools
+                    </button>
+                </div>
+
+                <!-- General Converter Section -->
+                <div class="section-content active" id="generalSection">
+                    <div class="upload-section" id="dropZone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h2>Drag & Drop Files</h2>
+                        <p>or</p>
+                        <button id="selectFile">Choose File</button>
+                        <input type="file" id="fileInput" hidden>
+                    </div>
+
+                    <div class="file-info" id="fileInfo" style="display: none;">
+                        <h3>Selected File:</h3>
+                        <p id="fileName"></p>
+                        <p id="fileSize"></p>
+                        <p id="fileType"></p>
+                    </div>
+
+                    <div class="conversion-options" id="conversionOptions" style="display: none;">
+                        <div class="format-selection">
+                            <div class="from-format">
+                                <label>Convert from:</label>
+                                <select id="fromFormat" disabled>
+                                    <option value="">Select format</option>
+                                </select>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                            <div class="to-format">
+                                <label>Convert to:</label>
+                                <select id="toFormat">
+                                    <option value="">Select format</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="convertBtn" class="convert-btn" disabled>
+                            <i class="fas fa-cog"></i> Convert Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PDF Tools Section -->
+                <div class="section-content" id="pdfSection">
+                    <div class="tool-grid">
+                        <div class="tool-card" data-tool="merge">
+                            <i class="fas fa-object-group"></i>
+                            <h3>Merge PDFs</h3>
+                            <p>Combine multiple PDF files</p>
+                        </div>
+                        <div class="tool-card" data-tool="split">
+                            <i class="fas fa-cut"></i>
+                            <h3>Split PDF</h3>
+                            <p>Split PDF into pages</p>
+                        </div>
+                        <div class="tool-card" data-tool="compress">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                            <h3>Compress PDF</h3>
+                            <p>Reduce PDF file size</p>
+                        </div>
+                        <div class="tool-card" data-tool="convert">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h3>Convert PDF</h3>
+                            <p>Convert to/from PDF</p>
+                        </div>
+                    </div>
+                    <input type="file" id="pdfInput" accept=".pdf" multiple hidden>
+                </div>
+
+                <!-- Audio Tools Section -->
+                <div class="section-content" id="audioSection">
+                    <div class="tool-grid">
+                        <div class="tool-card" data-tool="convert">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h3>Convert Audio</h3>
+                            <p>Change audio format</p>
+                        </div>
+                        <div class="tool-card" data-tool="trim">
+                            <i class="fas fa-cut"></i>
+                            <h3>Trim Audio</h3>
+                            <p>Cut audio file</p>
+                        </div>
+                        <div class="tool-card" data-tool="merge">
+                            <i class="fas fa-object-group"></i>
+                            <h3>Merge Audio</h3>
+                            <p>Combine audio files</p>
+                        </div>
+                        <div class="tool-card" data-tool="compress">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                            <h3>Compress Audio</h3>
+                            <p>Reduce audio size</p>
+                        </div>
+                    </div>
+                    <input type="file" id="audioInput" accept="audio/*" multiple hidden>
+                </div>
+
+                <div class="progress-container" id="progressContainer" style="display: none;">
+                    <div class="progress-info">
+                        <span id="progressText">Converting...</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress"></div>
+                    </div>
+                </div>
+
+                <div class="download-section" id="downloadSection" style="display: none;">
+                    <button id="downloadBtn" class="download-btn">
+                        <i class="fas fa-download"></i> Download Converted File
+                    </button>
+                </div>
+            </div>
+
+            <div class="recent-conversions">
+                <h3>Recent Conversions</h3>
+                <div id="conversionsList"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p> 2025 File Converter Pro. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal" id="errorModal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2><i class="fas fa-exclamation-circle"></i> Error</h2>
+            <p id="errorMessage"></p>
+            <button id="errorOkBtn">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
